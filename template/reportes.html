@@ -1,0 +1,125 @@
+<!-- Estructura básica de la página de reportes -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Reportes - Librería LEERENCANTA</title>
+</head>
+<body>
+    <h1>Reportes de la Librería LEERENCANTA</h1>
+
+    <!-- Reporte 1: Consolidado mensual de la cantidad de clientes nuevos a nivel nacional -->
+    <h2>Reporte 1: Consolidado mensual de la cantidad de clientes nuevos a nivel nacional</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Mes</th>
+                <th>Cantidad de Clientes Nuevos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in consolidado_clientes_nuevos %}
+                <tr>
+                    <td>{{ row.mes }}</td>
+                    <td>{{ row.cantidad_clientes }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Reporte 2: Consolidado mensual y anual de la editorial de la cual se han vendido más libros en cada sucursal -->
+    <h2>Reporte 2: Consolidado mensual y anual de la editorial de la cual se han vendido más libros en cada sucursal</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Sucursal</th>
+                <th>Mes</th>
+                <th>Editorial</th>
+                <th>Cantidad de Libros Vendidos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in consolidado_editoriales %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Reporte 3: Datos de los clientes nuevos organizados por sucursal en un mes particular -->
+    <h2>Reporte 3: Datos de los clientes nuevos organizados por sucursal en un mes particular</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Sucursal</th>
+                <th>Cliente</th>
+                <th>Documento</th>
+                <th>Teléfono</th>
+                <th>Ciudad Residencia</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in clientes_nuevos_por_sucursal %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1].nombre }}</td>
+                    <td>{{ row[1].documento_id }}</td>
+                    <td>{{ row[1].telefono }}</td>
+                    <td>{{ row[1].ciudad_residencia }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Reporte 4: Libros más comprados en un mes particular a nivel nacional por cada sucursal -->
+    <h2>Reporte 4: Libros más comprados en un mes particular a nivel nacional por cada sucursal</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Sucursal</th>
+                <th>Título del Libro</th>
+                <th>Cantidad de Compras</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in libros_mas_comprados %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Reporte 5: Datos de los empleados a nivel nacional organizados por sucursal y por cargo -->
+    <h2>Reporte 5: Datos de los empleados a nivel nacional organizados por sucursal y por cargo</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Sucursal</th>
+                <th>Cargo</th>
+                <th>Empleado con Mayor Antigüedad</th>
+                <th>Empleado con Menor Antigüedad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in empleados_por_sucursal_cargo %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+                    <td>{{ row[3] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
