@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar empleado</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous">
+
+    <style>
+        #tabla {
+            margin-top: 460px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container__menu">
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li><a href="#" id="selected">Inicio</a></li>
+                        <li><a href="#">Servicios</a>
+                            <ul>
+                                <li><a href="">Administración de empleados</a></li>
+                                <li><a href="">Libros vendidos</a></li>
+                                <li><a href="">Clientes por sucursal</a></li>
+                                <li><a href="">Registrar cliente nuevo</a></li>
+                                <li><a href="">Consolidados</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Nosotros</a></li>
+                        <li><a href="#">Contactos</a></li>
+                        <li class="admin">
+                            <h6>Admin</h6>
+                        </li>
+                        <li class="user"><img src="../static/img/ic_person.png" alt=""></li>
+                        <li><a href="{{ url_for('login') }}"></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages%}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <main id="tabla">
+        <div class="content-container">
+            <div class="col-md-5">
+                <form method="POST">
+                    <fieldset>
+                        <legend class="fw-bold">Información Personal</legend>
+                        <hr>
+                        <div class="form-group"></div>
+
+                        <label for="nombre">Nombre de empleado:</label>
+                        <input type="text" id="nombre" name="nombre" required class="form-control">
+
+                        <label for="cedula">Cedula:</label>
+                        <input type="text" id="cedula" name="cedula" required class="form-control">
+
+                        <label for="genero">Telelfono:</label>
+                        <select class="form-select" name="genero" id="genero">
+                            <label for="cedula">Fijo:</label>
+                            <input type="text" id="tel_fijo" name="tel_fijo" required class="form-control">
+                            <label for="cedula">Celular:</label>
+                            <input type="text" id="celular" name="celular" required class="form-control">
+                        </select>
+
+                        <label for="edad">Fecha nacimiento:</label>
+                        <input type="date" id="fecha_ento" name="fecha_ento" required class="form-control">
+
+                        <label for="edad">Fecha ingreso:</label>
+                        <input type="date" id="fecha_ingreso" name="fecha_ingreso" required class="form-control">
+
+                        <label for="genero">Cargo:</label>
+                        <select class="form-select" name="genero" id="genero">
+                            <option value="Masculino">Gerente</option>
+                            <option value="Femenino">empleado</option>
+                        </select>
+                        <label for="cedula">Salario:</label>
+                        <input type="text" id="cedula" name="cedula" required class="form-control">
+
+                        <hr>
+                    </fieldset>
+                    <br><br>
+
+                    <button type="submit" class="btn btn-primary btn-block" name="submit">Añadir Empleado</button>
+                    <a href="{{ url_for('gestion_instructores') }}" class="btn btn-primary btn-block">Volver</a>
+                </form>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

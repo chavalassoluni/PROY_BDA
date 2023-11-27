@@ -1,8 +1,9 @@
 .button {
     background-color: #4CAF50;
-    border: none;
+    border:2px;
+    border-radius: 20px;
     color: white;
-    padding: 10px 20px;
+    padding: 20px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -32,16 +33,17 @@
 .boton-agregar {
     display: inline-block;
     padding: 10px 20px; /* Espacio interno del botón */
-    background-color: #48ff00; /* Color de fondo del botón (puedes cambiarlo) */
+    background-color: #F1B63C; /* Color de fondo del botón (puedes cambiarlo) */
     color: #fff; /* Color del texto del botón */
     border: none; /* Sin borde */
     border-radius: 4px; /* Borde redondeado */
     cursor: pointer; /* Cambia el cursor al pasar por encima */
+    margin-left: 100px;
 }
 
 /* Estilo para el botón de agregar cuando se pasa el cursor por encima */
 .boton-agregar:hover {
-    background-color: #0056b3; /* Cambia el color de fondo al pasar el cursor */
+    background-color: #33b300; /* Cambia el color de fondo al pasar el cursor */
 }
 
 body{
@@ -441,4 +443,9 @@ table, td{
 
 h2{
     text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: white !important;    
 }
