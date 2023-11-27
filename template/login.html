@@ -18,18 +18,21 @@
     <main id="tabla">
         <div class="content-container">
             <h1>Iniciar Sesión</h1>
-            <form method="POST" action="/">
+            <form method="POST" action="/login">
                 <div class="form-group">
-                    <label for="identificacion">Nombre:</label>
-                    <input type="text" id="Nombre" name="Nombre" required class="form-control">
+                    <label for="identificacion">identificacion:</label>
+                    <input type="text" id="identificacion" name="identificacion" required class="form-control">
                     <br>
-                    <label for="contraseña">Contraseña:</label>
+                    <label for="contrasena">Contraseña:</label>
                     <input type="password" id="contrasena" name="contrasena" required class="form-control">
                     <br>
                 </div>
 
                 <input type="submit" class="btn btn-success btn-block" value="Iniciar Sesión">
             </form>
+            {% if error != None :  %}
+        <li> {{ error }} </li>
+        {% endif %}
         </div>
     </main>
 </body>

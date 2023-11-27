@@ -1,15 +1,25 @@
 from flask import Flask
 from flask_mysqldb import MySQL
-from query import obtenerEmpleados
+from query import obtenerEmpleados, validarLogin
 from flask import Flask, jsonify, render_template, request, redirect, url_for, flash
 app = Flask(__name__, static_folder='static', template_folder='template')
 
 
-
-@app.route('/')
+# Ruta para el formulario de login
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-     return render_template('./login.html')
+    print('prueba---1')
+    error = None
+    if request.method == 'POST':
+        identificacion = request.form['identificacion']
+        contrasena = request.form['contrasena']
+        print(identificacion, contrasena)
+        print('prueba****')
 
+        # Llamamos a la función de validación del login
+        return validarLogin(identificacion, contrasena)
+
+    return render_template('login.html', error=error)
 
 @app.route('/index')
 def index():
@@ -59,9 +69,6 @@ def santaMarta():
 def gerente():
      return render_template('./gerente.html')
 
-@app.route('/agregar_empleado')
-def agregar_empleado():
-     return render_template('./agregar_empleado.html')
 
 if __name__ =='__main__':
     app.run(port =3000, debug =True)
