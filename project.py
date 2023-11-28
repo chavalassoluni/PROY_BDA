@@ -1,31 +1,35 @@
 from flask import Flask
 from flask_mysqldb import MySQL
-from query import obtenerEmpleados, validarLogin
-from flask import Flask, jsonify, render_template, request, redirect, url_for, flash
+from query import obtenerEmpleados, validarLogin, validacionUsuarioSucursal
+from flask import Flask, jsonify, render_template, request, redirect, url_for, flash, session
 app = Flask(__name__, static_folder='static', template_folder='template')
 
 
 # Ruta para el formulario de login
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    print('prueba---1')
-    error = None
-    if request.method == 'POST':
+     error = None
+     if request.method == 'POST':
         identificacion = request.form['identificacion']
         contrasena = request.form['contrasena']
         print(identificacion, contrasena)
-        print('prueba****')
-
         # Llamamos a la función de validación del login
         return validarLogin(identificacion, contrasena)
+     
 
-    return render_template('login.html', error=error)
+     return render_template('login.html', error=error, )
 
 @app.route('/index')
 def index():
-    empleados = obtenerEmpleados()
-    return render_template('index.html', listaEmpleados=empleados)
-    
+    identificacion_usuario = request.cookies.get('identificacion')
+    empleadosSucursal=validacionUsuarioSucursal(identificacion_usuario)
+    return render_template('index.html', datosEmpleado=empleadosSucursal)
+
+@app.route('/cliente')
+def cliente():
+     identificacionCliente = request.cookies.get('identificacion')
+     clienteSucursal=validacionUsuarioSucursal(identificacionCliente)
+     return render_template('./cliente.html', cliente=clienteSucursal)
 
 @app.route('/consolidado')
 def conoslidado():
@@ -68,6 +72,8 @@ def santaMarta():
 @app.route('/gerente')
 def gerente():
      return render_template('./gerente.html')
+
+
 
 
 if __name__ =='__main__':

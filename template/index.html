@@ -40,11 +40,11 @@
 
     <h1>Lista de Empleados</h1>
     
-    <ul>
-        {% for emp in listaEmpleados %}
-        <li> {{ emp[1] }} {{ emp[2] }} </li>
-        {% endfor %}
-   </ul>
+    {% if datosEmpleado%}
+        <p>Identificación del usuario: {{ datosEmpleado[8] }}</p>
+    {% else %}
+        <p>No has iniciado sesión</p>
+    {% endif %}
 
     <main>
         <h2>Bienvenido Gerente</h2>
