@@ -106,3 +106,15 @@ def listadoEmpMedellin():
     cursor.execute("SELECT e.NombreEmpleado,e.DocumentoEmpleado, e.FechaNacimiento, e.FechaIngreso, e.Salario, tem.TelefonosMovil, tem.TelefonosFijo FROM empleado e INNER JOIN telefonosempleado tem ON e.idTelefonosEmpleado = tem.idTelefonosEmpleado WHERE e.NombreSucursal = 'Librero del valle';")
     infoEmpleMede = cursor.fetchall()
     return infoEmpleMede
+
+def buscarMiembro():
+    data = None
+    
+
+def chequeoCredencialEmpleado(identificacion):
+    print("prueba:",identificacion)
+    cursor.execute("SELECT em.DocumentoEmpleado, em.NombreEmpleado, em.FechaNacimiento, em.FechaIngreso, em.Salario, tele.TelefonosMovil, tele.TelefonosFijo, idCargo, sucursal.NombreSucursal FROM empleado em JOIN telefonosempleado tele ON em.idTelefonosEmpleado = tele.idTelefonosEmpleado JOIN sucursal ON em.NombreSucursal = sucursal.NombreSucursal WHERE em.DocumentoEmpleado = %s", (identificacion))
+    print("confirm")
+    busquedaEmple = cursor.fetchall()
+    print( busquedaEmple, "busqueda")
+    return busquedaEmple

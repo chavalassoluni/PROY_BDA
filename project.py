@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_mysqldb import MySQL
-from query import obtenerEmpleados, validarLogin, validacionUsuarioSucursal, obtener_info_cliente, listadoLibrosBarranquilla, listadoLibrosMedellin, listadoLibrosSantaMarta, listadoLibrosCartagena, listadoLibrosRiohacha, listadoLibrosBogota, listadoLibrosPasto, listadoLibrosCali, listadoEmpMedellin
+from query import obtenerEmpleados, validarLogin, validacionUsuarioSucursal, obtener_info_cliente, listadoLibrosBarranquilla, listadoLibrosMedellin, listadoLibrosSantaMarta, listadoLibrosCartagena, listadoLibrosRiohacha, listadoLibrosBogota, listadoLibrosPasto, listadoLibrosCali, listadoEmpMedellin, chequeoCredencialEmpleado
 from flask import Flask, jsonify, render_template, request, redirect, url_for, flash, session
 app = Flask(__name__, static_folder='static', template_folder='template')
 
@@ -18,6 +18,22 @@ def login():
      
 
      return render_template('login.html', error=error, )
+
+@app.route('/buscarEmpleado', methods=['GET', 'POST'])
+def buscarEmpleado():
+    error = None
+    if request.method == 'POST':
+        # Obtén el término de búsqueda del formulario
+        identificacion = request.form['identificacion']
+        print(identificacion)
+        data = chequeoCredencialEmpleado(identificacion)
+        print(data, "este")
+        if data:            
+            print('¡Empleado encontrado!.')
+            return render_template('buscarEmpleado.html', resultados=data)
+        else:
+            print('No se encontraron miembros con esa identificación.')
+    return render_template('buscarEmpleado.html')
 
 @app.route('/index')
 def index():
@@ -108,6 +124,15 @@ def agregarEmpleado():
 @app.route('/sucursalesCompra')
 def sucursalesCompra():
      return render_template('./sucursalesCompra.html')
+
+
+
+#BUSQUEDA DE DATOS
+
+
+
+
+
 
 if __name__ =='__main__':
     app.run(port =3000, debug =True)
