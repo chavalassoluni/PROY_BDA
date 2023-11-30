@@ -82,16 +82,17 @@
                         <li>Fecha de Nacimiento: {{ empleado[2] }}</li>
                         <li>Fecha de Ingreso: {{ empleado[3] }}</li>
                         <li>Salario: {{ empleado[4] }}</li>
+                        <li>Fijo: {{ empleado[5] }}</li>
                         <li>Movil: {{ empleado[6] }}</li>
-                        <li>Fijo: {{ empleado[7] }}</li>
                         <li>Cargo:
-                            {% if empleado[8] != 1 %}
-                                Gerente
-                            {% else %}
+                            {% if empleado[7] != 1 %}
                                 empleado
+                            {% else %}
+                                Gerente
                             {% endif %}
                         </li>
-                        <li>Sucursal: {{ empleado[9] }}</li>
+                        <li>Sucursal: {{ empleado[8] }}</li>
+                        <li>Ciudad: {{ empleado[9] }}</li>
                         <br>
                         <br>
                         {% endfor %}

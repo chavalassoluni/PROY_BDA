@@ -113,7 +113,7 @@ def buscarMiembro():
 
 def chequeoCredencialEmpleado(identificacion):
     print("prueba:",identificacion)
-    cursor.execute("SELECT em.DocumentoEmpleado, em.NombreEmpleado, em.FechaNacimiento, em.FechaIngreso, em.Salario, tele.TelefonosMovil, tele.TelefonosFijo, idCargo, sucursal.NombreSucursal FROM empleado em JOIN telefonosempleado tele ON em.idTelefonosEmpleado = tele.idTelefonosEmpleado JOIN sucursal ON em.NombreSucursal = sucursal.NombreSucursal WHERE em.DocumentoEmpleado = %s", (identificacion))
+    cursor.execute("SELECT em.DocumentoEmpleado, em.NombreEmpleado, em.FechaNacimiento, em.FechaIngreso, em.Salario, tele.TelefonosMovil, tele.TelefonosFijo, idCargo, sucursal.NombreSucursal, sucursal.CiudadSucursal FROM empleado em JOIN telefonosempleado tele ON em.idTelefonosEmpleado = tele.idTelefonosEmpleado JOIN sucursal ON em.NombreSucursal = sucursal.NombreSucursal WHERE em.DocumentoEmpleado = %s", (identificacion))
     print("confirm")
     busquedaEmple = cursor.fetchall()
     print( busquedaEmple, "busqueda")
