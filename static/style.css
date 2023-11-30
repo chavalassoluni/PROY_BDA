@@ -47,7 +47,7 @@
 }
 
 body{
-    background-image: url('https://static01.nyt.com/images/2019/09/15/multimedia/15Librerias-ESPANOL/15Librerias-ESPANOL-videoSixteenByNineJumbo1600.jpg');
+    background-image: url('./fondo.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -303,6 +303,7 @@ nav ul li ul li a:hover{
     margin-left: 10px;
 }
 .titleMembresia{
+
     color: white;
     text-align: center;
     font-family: sans-serif;
@@ -416,10 +417,11 @@ table, td{
 }
 .contenedor{
     background: #F1B63C;
-    margin-top: 40px;
+    margin-top: 150px !important;
     margin-left: 350px;
     margin-bottom: 10px;
     margin-right: 350px;
+    padding: 40px;
     display: flex;
     border-radius: 25px;    
 }
@@ -448,4 +450,49 @@ h2{
 a {
     text-decoration: none;
     color: white !important;    
+}
+.titulo{
+    padding: 20px;
+}
+
+.consolidado{
+    margin-left: 40px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #007bff;
+    border-radius: 10px;
+}
+
+.consolidado:hover{
+    margin-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #f7b63d;
+    border-radius: 10px;
+}
+
+.cardCon{
+    padding: 200px;
+    margin-left: 80px;
+    margin-right: 80px;
+    
+}
+.botones{
+    padding: 20px;
+    color: #0056b3;
+}
+
+.subrayado {
+    text-decoration: none;
+}
+
+.btncorto{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.btncorto:hover{
+    padding-left: 40px;
+    padding-right: 40px;
 }

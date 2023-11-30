@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bogotá</title>
+        <title>Medellin</title>
         <link rel="stylesheet" type="text/css" href="static\style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
             rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
@@ -39,20 +39,57 @@
     </header>
 
     <br>
-    <h1 class="title_perfil">¡¡Bienvenido a la libreria <br>
-        <b>PÁGINAS CAPITALINAS!!</b></h1>
+    <h1 class="title_perfil"><b>PALABRAS ANDINAS!!</b></h1>
 
-<main class="titulo">
-    <h1>Libros disponibles</h1>
-</main>
+    <main id="tabla">
+        <div class="content-container">
+            <div class="col-md-5">
+                <form method="POST">
+                    <fieldset>
+                        <legend class="fw-bold">EMPLEADOS</legend>
+                        <hr>
+                        <div class="form-group"></div>
+                        <label for="nombre">Nombre de Empleado:</label>
+                        <input type="text" id="nombre" name="nombre" class="form-control">
 
-        {% if librosBg %}
+                        <label for="apellido">Identificación:</label>
+                        <input type="text" id="apellido" name="apellido" class="form-control">
+
+                        <label for="correo">Fecha Nacimiento:</label>
+                        <input type="date" id="correo" name="correo" class="form-control">
+
+                        <label for="correo">Fecha Ingreso:</label>
+                        <input type="date" id="correo" name="correo" class="form-control">
+
+                        <label for="correo">Salario:</label>
+                        <input type="text" id="correo" name="correo" class="form-control">
+
+                        <label for="telefono">Teléfonos:</label>
+                        <ul>
+                            <li>
+                                <input type="number" id="telefono" name="telefono" class="form-control">
+                            </li>
+                            <li>
+                                <input type="number" id="telefono" name="telefono" class="form-control">
+                            </li>
+                        </ul>
+
+                        
+                    <button type="submit" class="btn btn-primary btn-block">Editar Empleado</button>
+                    <a href="{{ url_for('gerente') }}" class="btn btn-primary btn-block">Volver</a>
+                </form>
+            </div>
+        </div>
+    </main>
+
+<h1>hola</h1>
+        {% if infor %}
           
             <ul>
               
-            {% for libros in librosBg %}
+            {% for infor in info %}
             <div class="containers_info">
-                <h3 class="edit_perfil">{{libros[0]}}</h3>
+                <h3 class="edit_perfil">{{infor[0]}}</h3>
                 <a style="margin-left: 150px" class="btn btn-primary ml-2"
                     href="">Comprar</a>
             </div>
