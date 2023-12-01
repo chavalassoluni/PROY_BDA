@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_mysqldb import MySQL
-from query import obtenerEmpleados, validarLogin, validacionUsuarioSucursal, obtener_info_cliente, listadoLibrosBarranquilla, listadoLibrosMedellin, listadoLibrosSantaMarta, listadoLibrosCartagena, listadoLibrosRiohacha, listadoLibrosBogota, listadoLibrosPasto, listadoLibrosCali, listadoEmpMedellin, chequeoCredencialEmpleado
+from query import obtenerEmpleados, validarLogin, validacionUsuarioSucursal, obtener_info_cliente, listadoLibrosBarranquilla, listadoLibrosMedellin, listadoLibrosSantaMarta, listadoLibrosCartagena, listadoLibrosRiohacha, listadoLibrosBogota, listadoLibrosPasto, listadoLibrosCali, listadoEmpMedellin, chequeoCredencialEmpleado, agregarEmpleado, listadoSucursales, listacargo
 from flask import Flask, jsonify, render_template, request, redirect, url_for, flash, session
 app = Flask(__name__, static_folder='static', template_folder='template')
 
@@ -117,20 +117,31 @@ def reportes():
 def gerente():
      return render_template('./gerente.html')
 
-@app.route('/agregarEmpleado')
-def agregarEmpleado():
-     return render_template('./agregarEmpleado.html')
-
 @app.route('/sucursalesCompra')
 def sucursalesCompra():
      return render_template('./sucursalesCompra.html')
 
+@app.route('/agregarEmple', methods=['POST', 'GET'])
+def agregarEmple():
+     if request.method == 'POST':
+        nombre = request.form['nombre']
+        cedula = request.form['cedula']
+        fecha_ento = request.form['fecha_ento']
+        fecha_ingreso = request.form['fecha_ingreso']
+        salario = request.form['salario']
+        contrasena = request.form['contrasena']
+        tel_fijo = request.form['tel_fijo']
+        celular = request.form['celular']
+        cargo = request.form['cargo']
+        sucursal = request.form['sucursal']
+        print(nombre, cedula, fecha_ento, fecha_ingreso, salario, contrasena, celular,  tel_fijo, cargo, sucursal)
+        # Llamamos a la función de validación del login
+        agregarEmpleado(nombre, cedula, fecha_ento, fecha_ingreso, salario, contrasena, celular,  tel_fijo, cargo, sucursal)
+     
+     sucursalList=listadoSucursales()
+     cargosList=listacargo()
 
-
-#BUSQUEDA DE DATOS
-
-
-
+     return render_template('./agregarEmpleado.html',sucursales=sucursalList, listaCargos=cargosList)
 
 
 

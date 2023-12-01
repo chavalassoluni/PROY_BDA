@@ -59,7 +59,7 @@
     <main id="tabla">
         <div class="content-container">
             <div class="col-md-5">
-                <form method="POST">
+                <form method="POST" action="/agregarEmple">
                     <fieldset>
                         <legend class="fw-bold">Información Personal</legend>
                         <hr>
@@ -68,37 +68,47 @@
                         <label for="nombre">Nombre de empleado:</label>
                         <input type="text" id="nombre" name="nombre" required class="form-control">
 
-                        <label for="cedula">Cedula:</label>
+                        <label for="cedula">Identificacion:</label>
                         <input type="text" id="cedula" name="cedula" required class="form-control">
 
-                        <label for="genero">Telelfono:</label>
-                        <select class="form-select" name="genero" id="genero">
-                            <label for="cedula">Fijo:</label>
-                            <input type="text" id="tel_fijo" name="tel_fijo" required class="form-control">
-                            <label for="cedula">Celular:</label>
-                            <input type="text" id="celular" name="celular" required class="form-control">
-                        </select>
-
-                        <label for="edad">Fecha nacimiento:</label>
+                        <label for="fecha_ento">Fecha nacimiento:</label>
                         <input type="date" id="fecha_ento" name="fecha_ento" required class="form-control">
 
-                        <label for="edad">Fecha ingreso:</label>
+                        <label for="fecha_ingreso">Fecha ingreso:</label>
                         <input type="date" id="fecha_ingreso" name="fecha_ingreso" required class="form-control">
 
-                        <label for="genero">Cargo:</label>
-                        <select class="form-select" name="genero" id="genero">
-                            <option value="Masculino">Gerente</option>
-                            <option value="Femenino">empleado</option>
-                        </select>
-                        <label for="cedula">Salario:</label>
-                        <input type="text" id="cedula" name="cedula" required class="form-control">
+                        <label for="salario">Salario:</label>
+                        <input type="text" id="salario" name="salario" required class="form-control">
 
+                        <label for="contrasena">Contraseña:</label>
+                        <input type="password" id="contrasena" name="contrasena" required class="form-control">
+
+                        <label for="tel">Fijo:</label>
+                        <input type="tel" id="tel_fijo" name="tel_fijo" required class="form-control">
+                        <label for="celular">Celular:</label>
+                        <input type="tel" id="celular" name="celular" required class="form-control">
+
+                        <label for="cargo">Cargo:</label>
+                        <select class="form-select" name="cargo" id="cargo">
+                            {%for c in listaCargos%}
+                            <option value="{{c[0]}}">{{c[1]}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <label for="sucursal">Sucursal:</label>
+                        <select class="form-select" name="sucursal" id="sucursal">
+                            {%for sucursal in sucursales%}
+                            <option value="{{sucursal[0]}}">{{sucursal[0]}}</option>
+                            {% endfor %}
+                        </select>
+
+                        
                         <hr>
                     </fieldset>
                     <br><br>
 
                     <button type="submit" class="btn btn-primary btn-block" name="submit">Añadir Empleado</button>
-                    <a href="{{ url_for('gerente') }}" class="btn btn-primary btn-block">Volver</a>
+                    <a href="" class="btn btn-primary btn-block">Volver</a>
                 </form>
             </div>
         </div>
