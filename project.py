@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_mysqldb import MySQL
-from query import obtenerEmpleados, validarLogin, validacionUsuarioSucursal, obtener_info_cliente, listadoLibrosBarranquilla, listadoLibrosMedellin, listadoLibrosSantaMarta, listadoLibrosCartagena, listadoLibrosRiohacha, listadoLibrosBogota, listadoLibrosPasto, listadoLibrosCali, listadoEmpMedellin, chequeoCredencialEmpleado, agregarEmpleado, listadoSucursales, listacargo
+from query import obtenerEmpleados, validarLogin, validacionUsuarioSucursal, obtener_info_cliente, listadoLibrosBarranquilla, listadoLibrosMedellin, listadoLibrosSantaMarta, listadoLibrosCartagena, listadoLibrosRiohacha, listadoLibrosBogota, listadoLibrosPasto, listadoLibrosCali, listadoEmpMedellin, chequeoCredencialEmpleado, agregarEmpleado, listadoSucursales, listacargo, agregarClientes, ciudades
 from flask import Flask, jsonify, render_template, request, redirect, url_for, flash, session
 app = Flask(__name__, static_folder='static', template_folder='template')
 
@@ -143,6 +143,26 @@ def agregarEmple():
 
      return render_template('./agregarEmpleado.html',sucursales=sucursalList, listaCargos=cargosList)
 
+@app.route('/agregarCliente', methods=['POST', 'GET'])
+def agregarCliente():
+     if request.method == 'POST':
+        nombre = request.form['nombre']
+        cedula = request.form['cedula']
+        celular = request.form['celular']
+        tel_fijo = request.form['tel_fijo']
+        ciudadR = request.form['ciudadR']
+        contrasena = request.form['contrasena']
+        FechaRegistro = request.form['FechaRegistro']
+
+        print(nombre, cedula, celular, tel_fijo, ciudadR, contrasena, FechaRegistro)
+        # Llamamos a la función de validación del login
+        agregarClientes(nombre, cedula, celular, tel_fijo, ciudadR, contrasena, FechaRegistro)
+     
+     listaCiudades=ciudades()
+     sucursalList=listadoSucursales()
+
+
+     return render_template('./agregarCliente.html',sucursales=sucursalList, listaCiudades=listaCiudades)
 
 
 if __name__ =='__main__':

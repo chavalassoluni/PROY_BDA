@@ -60,25 +60,25 @@ def obtener_info_cliente():
     info_miembro = cursor.fetchall()
     return info_miembro
 
-#CONSULTA LIBROS DISPONIBLES EN BARRANQUILLA
+#CONSULTA LIBROS DISPONIBLES EN CADA UNA DE LAS SUCURSALES
 def listadoLibrosBarranquilla():
     cursor.execute("SELECT libro.Titulo, sucursal.NombreSucursal FROM inventario JOIN libro ON inventario.idLibro = libro.idLibro JOIN sucursal ON inventario.NombreSucursal = sucursal.NombreSucursal WHERE sucursal.NombreSucursal='Arena de ideas'")
     listadoBarranquilla = cursor.fetchall()
     return listadoBarranquilla
 
-#CONSULTA LIBROS DISPONIBLES EN MEDELLIN
+
 def listadoLibrosMedellin():
     cursor.execute("SELECT libro.Titulo, sucursal.NombreSucursal FROM inventario JOIN libro ON inventario.idLibro = libro.idLibro JOIN sucursal ON inventario.NombreSucursal = sucursal.NombreSucursal WHERE sucursal.NombreSucursal='Librero del valle'")
     listadoLibrosMedellin = cursor.fetchall()
     return listadoLibrosMedellin
 
-#CONSULTA LIBROS DISPONIBLES EN SANTA MARTA
+
 def listadoLibrosSantaMarta():
     cursor.execute("SELECT libro.Titulo, sucursal.NombreSucursal FROM inventario JOIN libro ON inventario.idLibro = libro.idLibro JOIN sucursal ON inventario.NombreSucursal = sucursal.NombreSucursal WHERE sucursal.NombreSucursal='Mar de libros'")
     listadoLibrosSantaMarta = cursor.fetchall()
     return listadoLibrosSantaMarta
 
-#CONSULTA LIBROS DISPONIBLES EN CARTAGENA
+
 def listadoLibrosCartagena():
     cursor.execute("SELECT libro.Titulo, sucursal.NombreSucursal FROM inventario JOIN libro ON inventario.idLibro = libro.idLibro JOIN sucursal ON inventario.NombreSucursal = sucursal.NombreSucursal WHERE sucursal.NombreSucursal='Murallas del saber'")
     listadoLibrosCartagena = cursor.fetchall()
@@ -142,3 +142,16 @@ def listacargo():
     cursor.execute("SELECT * FROM cargo")
     resultadoCargo=cursor.fetchall()
     return resultadoCargo
+
+def agregarClientes(nombre, cedula, celular, tel_fijo, ciudadR, contrasena, FechaRegistro):
+    cursor.execute('INSERT INTO cliente (NombreCliente, DocumentoCliente, Celular, Telefono, CiudadResidencia, Contrasena, FechaRegistro) VALUES (%s, %s, %s, %s, %s, %s, %s)',
+    (nombre, cedula, celular, tel_fijo, ciudadR, contrasena, FechaRegistro))
+    # Guardar los cambios en la base de datos
+    connection.commit()
+    print(nombre, cedula, celular, tel_fijo, ciudadR, contrasena, FechaRegistro)
+    return False
+
+def ciudades():
+    cursor.execute("SELECT CiudadSucursal FROM sucursal")
+    listaCiudad=cursor.fetchall()
+    return listaCiudad
