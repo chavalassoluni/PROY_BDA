@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_mysqldb import MySQL
-from query import obtenerEmpleados, validarLogin, validacionUsuarioSucursal, obtener_info_cliente, listadoLibrosBarranquilla, listadoLibrosMedellin, listadoLibrosSantaMarta, listadoLibrosCartagena, listadoLibrosRiohacha, listadoLibrosBogota, listadoLibrosPasto, listadoLibrosCali, listadoEmpMedellin, chequeoCredencialEmpleado, agregarEmpleado, listadoSucursales, listacargo, agregarClientes, ciudades
+from query import obtenerEmpleados, validarLogin, validacionUsuarioSucursal, obtener_info_cliente, listadoLibrosBarranquilla, listadoLibrosMedellin, listadoLibrosSantaMarta, listadoLibrosCartagena, listadoLibrosRiohacha, listadoLibrosBogota, listadoLibrosPasto, listadoLibrosCali, listadoEmpMedellin, chequeoCredencialEmpleado, agregarEmpleado, listadoSucursales, listacargo, agregarClientes, ciudades, chequeoCredencialCliente
 from flask import Flask, jsonify, render_template, request, redirect, url_for, flash, session
 app = Flask(__name__, static_folder='static', template_folder='template')
 
@@ -32,7 +32,7 @@ def buscarEmpleado():
             print('¡Empleado encontrado!.')
             return render_template('buscarEmpleado.html', resultados=data)
         else:
-            print('No se encontraron miembros con esa identificación.')
+            print('No se encontraron empleados con esa identificación.')
     return render_template('buscarEmpleado.html')
 
 @app.route('/index')
@@ -164,6 +164,21 @@ def agregarCliente():
 
      return render_template('./agregarCliente.html',sucursales=sucursalList, listaCiudades=listaCiudades)
 
+@app.route('/buscarCliente', methods=['GET', 'POST'])
+def buscarCliente():
+    error = None
+    if request.method == 'POST':
+        # Obtén el término de búsqueda del formulario
+        identificacion = request.form['identificacion']
+        print(identificacion)
+        data = chequeoCredencialCliente(identificacion)
+        print(data, "este")
+        if data:            
+            print('¡Cliente encontrado!.')
+            return render_template('buscarCliente.html', resultados=data)
+        else:
+            print('No se encontraron clientes con esa identificación.')
+    return render_template('buscarCliente.html')
 
 if __name__ =='__main__':
     app.run(port =3000, debug =True)

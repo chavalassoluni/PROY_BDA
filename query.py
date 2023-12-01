@@ -155,3 +155,11 @@ def ciudades():
     cursor.execute("SELECT CiudadSucursal FROM sucursal")
     listaCiudad=cursor.fetchall()
     return listaCiudad
+
+def chequeoCredencialCliente(identificacion):
+    print("prueba:",identificacion)
+    cursor.execute("SELECT NombreCliente, DocumentoCliente, Celular, Telefono, CiudadResidencia, Contrasena, FechaRegistro FROM cliente WHERE DocumentoCliente = %s", (identificacion))
+    print("confirm")
+    busquedaCliente = cursor.fetchall()
+    print( busquedaCliente, "busqueda")
+    return busquedaCliente
